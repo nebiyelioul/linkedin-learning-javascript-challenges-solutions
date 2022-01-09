@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+<body>
+   Enter password : <input type="text" id="password"> 
+   <span id="message"></span>
+</body>
+<script>
+   function checkPassword(password){
+      let oneLowerCaseLetter = /(?=.+[a-z])/;
+      let oneUpperCaseLetter = /(?=.+[A-Z])/;
+      let oneDigit = /(?=.+[0-9])/;
+      let oneSpecialCharacter = /(?=.+[!@#$%^&*()])/;
+      let minimumEightCharacters = /(?=.{8,})/;
+
+      let isValid =  oneLowerCaseLetter.test(password) &&
+                     oneUpperCaseLetter.test(password) &&
+                     oneDigit.test(password) &&
+                     oneSpecialCharacter.test(password) &&
+                     minimumEightCharacters.test(password);
+      
+      return isValid ? "Strong password": "week password";
+   }
+
+   document.querySelector("#password").addEventListener("keyup", function(){
+      document.querySelector("#message").textContent = checkPassword(this.value);
+   });
+</script>
+</html>
